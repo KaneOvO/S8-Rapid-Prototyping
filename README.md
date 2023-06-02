@@ -2,7 +2,7 @@
 
 Choose Complete Scene flow
 
-Play Link:https://kaneovo.github.io/S7-Rapid-Prototyping/
+Play Link: https://kaneovo.github.io/S8-Rapid-Prototyping/
 
 Use the A and D keys to control forward and backward movement.
 
