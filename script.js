@@ -2,8 +2,10 @@ class scene2 extends Phaser.Scene {
     constructor() {
         super("scene2");
     }
+    
     preload() {
-
+        this.load.image('slug', '1.png');
+        this.load.image("enemy", "2.png");
 
     }
 
@@ -18,7 +20,7 @@ class scene2 extends Phaser.Scene {
         this.tips = this.add.text(this.cx,this.cy,"Use WASD to move.").setOrigin(0.5).setFontSize(20);
         this.text = this.add.text(this.cx,this.h * 0.7,`This is the game scene, 
 if the player is rushed to the leftmost side of the screen will enter the failure scene, 
-if the player reaches the rightmost side of the screen will enter the victory scene`).setOrigin(0.5).setFontSize(20);
+if the player reaches the rightmost side of the screen will enter the victory scene`).setOrigin(0.5).setFontSize(15);
 
         this.slug = this.physics.add.sprite(400, this.h, "slug")
             .setBodySize(10, 10)
@@ -85,18 +87,18 @@ if the player reaches the rightmost side of the screen will enter the victory sc
 
         if (this.slug.x >= this.w - 20) {
             
-            this.cameras.main.fade(2000, 255, 255, 255);
+            this.cameras.main.fade(1000, 0, 0, 0);
             this.physics.pause();
-            this.time.delayedCall(2000, () => {
-                this.scene.start(scene3);
+            this.time.delayedCall(1000, () => {
+                this.scene.start("scene4");
             });
         }
         else if (this.slug.x <= 20) {
-            this.cameras.main.fade(2000, 255, 255, 255);
+            this.cameras.main.fade(1000, 0, 0, 0);
             this.physics.pause();
 
-            this.time.delayedCall(2000, () => {
-                this.scene.start(scene4);
+            this.time.delayedCall(1000, () => {
+                this.scene.start("scene3");
             });
         }
 
@@ -122,12 +124,12 @@ class scene1 extends Phaser.Scene {
         this.cy = this.cameras.main.centerY;
 
         this.title = this.add.text(this.cx, this.cy, `This is the starting scene,
-Click to enter the game scene`).setOrigin(0.5).setFontSize(20);
+Click to go to the game scene`).setOrigin(0.5).setFontSize(20);
 
         this.input.on('pointerup', () => {
             this.cameras.main.fade(1000, 0, 0, 0);
             this.time.delayedCall(1000, () => {
-                this.scene.start(scene2);
+                this.scene.start("scene2");
             });
 
         });
@@ -140,7 +142,6 @@ class scene3 extends Phaser.Scene {
 
     constructor() {
         super("scene3");
-        //
     }
 
     create() {
@@ -151,13 +152,13 @@ class scene3 extends Phaser.Scene {
         this.cx = this.cameras.main.centerX;
         this.cy = this.cameras.main.centerY;
 
-        this.title = this.add.text(this.cx, this.cy, `This is the starting scene,
+        this.title = this.add.text(this.cx, this.cy, `This is the failure scene,
 Click to return the game scene`).setOrigin(0.5).setFontSize(20);
 
         this.input.on('pointerup', () => {
             this.cameras.main.fade(1000, 0, 0, 0);
             this.time.delayedCall(1000, () => {
-                this.scene.start(scene2);
+                this.scene.start("scene2");
             });
 
         });
@@ -190,7 +191,7 @@ Click to return to the start scene`).setOrigin(0.5).setFontSize(20);
         this.input.on('pointerup', () => {
             this.cameras.main.fade(1000, 0, 0, 0);
             this.time.delayedCall(1000, () => {
-                this.scene.start(scene1);
+                this.scene.start("scene1");
             });
 
         });
